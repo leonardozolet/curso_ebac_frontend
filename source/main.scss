@@ -1,0 +1,114 @@
+@use 'config/reset';
+@use 'config/vari';
+@use 'sass:math';
+
+@function pixelParaEm($pixel, $contexto: 16) {
+    @return math.div($pixel, $contexto);
+}
+
+body {
+    background-color: #f5f6fa;
+    font-family: vari.$font;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: 1024px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: vari.$navBackground;
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+    }
+
+    .menu {
+        display: flex;
+
+        li{
+            font-weight: bold;
+            margin-left: 24px;
+
+            a{
+                color: vari.$navText;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+section {
+    padding: 56px 0;
+
+    .products {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 32.66%);
+        column-gap: 1%;
+        row-gap: 4%;
+        width: 100%;
+
+        .product-item img {
+            width: 100%;
+            border-radius: 16px;
+        }
+
+        .product-button {
+            display: block;
+            background-color: vari.$button;
+            color: vari.$navText;
+            text-align: center;
+            padding: 8px 0;
+            border-radius: 8px;
+            margin-top: 8px;
+            text-decoration: none;
+
+            &:hover{
+                background-color: lighten($color: vari.$button, $amount: 5);
+            }
+        }
+    }
+}
+
+
+
+@media screen and (max-width: vari.$tablet) {
+    .container{
+        max-width: 90%;
+    }
+    
+    .products {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; 
+        column-gap: 1em !important;  
+        row-gap: 1em !important;
+    }
+
+    .product-item  {
+        margin-bottom: 32px;
+    }
+}
+
+@media screen and (max-width: vari.$mobile) {
+    .container{
+        max-width: 90%;
+    }
+    .products {
+        display: grid !important;
+        grid-template-columns: 1fr !important; 
+        column-gap: 1em !important;  
+        row-gap: 1em !important;
+    }
+}
